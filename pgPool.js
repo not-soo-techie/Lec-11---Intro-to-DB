@@ -10,12 +10,13 @@ const client = new Pool({
     max: 10
 });
 
-await client.connect();
+const pool = await client.connect();
 
-const result = await client.query(
+const result = await pool.query(
     "SELECT * FROM users"
 );
 
 console.log(result.rows);
 
-await client.end();
+pool.release();
+// await pool.end();

@@ -13,10 +13,15 @@ const client = new Client({
     
 // }
 
-await client.connect()
+await client.connect((err) => {
+    if(!err) console.log("Thik h");
+    console.log("Connection done");
+})
 
 const query = "SELECT * FROM users;"
 console.log(query);
 
-await client.end()
+await client.end((err) => {
+    console.log("Connection closed");
+})
 // db();
